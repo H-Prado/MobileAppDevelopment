@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Laboratory3</string>
+    <string name="MyFirstString">First String</string>
+    <string name="MySecondString">Second String</string>
+    <string name="Roll">ROLL</string>
+    <string name="Healthy">OBLICZ INDEX BMI</string>
+</resources>
