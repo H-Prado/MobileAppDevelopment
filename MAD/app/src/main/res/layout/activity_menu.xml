@@ -7,7 +7,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20sp"
+        android:layout_marginTop="10sp"
         android:textSize="20sp"
         android:textStyle="bold"
         android:text="Run activity with test actions"
@@ -15,7 +15,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20sp"
+        android:layout_marginTop="10sp"
         android:textSize="20sp"
         android:textStyle="bold"
         android:text="Play how many fingers"
@@ -23,7 +23,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20sp"
+        android:layout_marginTop="10sp"
         android:textSize="20sp"
         android:textStyle="bold"
         android:text="Check your BMI"
@@ -31,7 +31,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20sp"
+        android:layout_marginTop="10sp"
         android:textSize="20sp"
         android:textStyle="bold"
         android:text="Show flower list"
@@ -40,7 +40,7 @@
         android:id="@+id/user_value_to_be_passed"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20sp"
+        android:layout_marginTop="10sp"
         android:textSize="20sp"
         android:textStyle="bold"
         android:gravity="center"
@@ -49,10 +49,36 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20sp"
+        android:layout_marginTop="10sp"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:text="Show flower list"
+        android:text="Pass Value To The Next Activity"
         android:onClick="runActivityAndPassValue"/>
+    <EditText
+        android:id="@+id/sp_value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10sp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:hint="SP Value"
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10sp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:text="Write to SP "
+        android:onClick="spWriteTo"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10sp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:text="Read from SP"
+        android:onClick="spReadFrom"/>
 
 </LinearLayout>
