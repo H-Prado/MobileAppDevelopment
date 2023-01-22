@@ -31,21 +31,28 @@
         android:gravity="center"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:text=""/>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:text="Try to guess the number!"/>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:layout_gravity="bottom"
         android:text="Return to Menu"
         android:onClick="returnToMenu"/>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20sp"
+        android:text="Results"
+        android:textSize="20sp"
+        android:gravity="center"
+        />
+
+    <ListView
+        android:id="@+id/how_many_fingers_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 </LinearLayout>

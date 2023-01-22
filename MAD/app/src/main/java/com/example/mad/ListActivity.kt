@@ -27,7 +27,7 @@ class ListActivity : AppCompatActivity() {
 
     private fun showFlowerNameInputBox(oldName: String, position: Int, flowersAdapter: FlowersAdapter) {
         val dialog = Dialog(this)
-        dialog.setTitle("Modify Flower name")
+        dialog.setTitle("Modify com.example.mad.Flower name")
         dialog.setContentView(R.layout.input_box_layout)
         dialog.input_text.setText(oldName)
         dialog.btn_update.setOnClickListener{
