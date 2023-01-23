@@ -34,8 +34,6 @@ class HowManyFingersActivity : AppCompatActivity() {
         val resultText: TextView = findViewById(R.id.result_text)
         val userGuessedNumber: EditText = findViewById(R.id.user_guessed_number)
 
-        var howManyFingersResult: HowManyFingersResult
-
         try {
             Log.i("How Many Fingers","This iteration the correct number was: " + correctNumber)
             val db = Room.databaseBuilder(applicationContext, AppDatabase::class.java, "howManyFingersresultDatabase")
