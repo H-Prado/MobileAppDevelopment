@@ -6,7 +6,7 @@
     android:background="@color/error_toast">
 
     <TextView
-        android:id="@+id/toast_register_login_error_message"
+        android:id="@+id/toast_error_message"
         android:layout_width="match_parent"
         android:layout_height="50sp"
         android:gravity="center"

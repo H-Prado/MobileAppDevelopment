@@ -8,7 +8,9 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.room.Room
-import kotlinx.android.synthetic.main.activity_restaurant_info.*
+import kotlinx.android.synthetic.main.activity_restaurant_create.*
+import kotlinx.android.synthetic.main.toast_error.view.*
+import kotlinx.android.synthetic.main.toast_success.view.*
 
 class RestaurantCreateActivity : AppCompatActivity() {
 
@@ -47,28 +49,45 @@ class RestaurantCreateActivity : AppCompatActivity() {
                     restaurantDao.insertAll(modifyRestaurant)
                     Log.i("Modified Succesfully", "Data: " + modifyRestaurant.toString())
 
-                    showToastMessage()
+                    showToastMessage("success", "Restaurant was succesfully created!")
 
                 var intent = Intent(this, OwnerBarList::class.java)
                     startActivity(intent)
                 }else{
                     Log.e("Error modifing:", "Phone number doesn't have 9 numbers!")
+                    showToastMessage("error", "Phone number doesn't have 9 numbers!")
                     restaurant_info_message.text = "Phone number doesn't have 9 numbers!"
                 }
             }else{
                 Log.e("Error modifing:", "One parameter is missing!")
+                showToastMessage("error", "One parameter is missing!")
                 restaurant_info_message.text = "One parameter is missing!!"
             }
-        }catch(e: Exception){
-            Log.e("Error modifing:", "Phone Number is not a valid number!" + e.toString())
-            restaurant_info_message.text = "Phone number is not a valid number!"
+        }catch(e: NumberFormatException){
+            Log.e("Error modifing:", "Phone Number is not a valid number! -- " + e.toString())
+            showToastMessage("error", "Phone Number is not a valid number!")
+            restaurant_info_message.text = "Phone Number is not a valid number!"
+        }catch (e: Exception){
+            Log.e("Error modifing:", "Restaurant for this ubication already exists!! -- " + e.toString())
+            showToastMessage("error", "Restaurant for this ubication already exists!")
+            restaurant_info_message.text = "Restaurant for this ubication already exists!"
         }
     }
 
-    fun showToastMessage() {
-        var toastView = layoutInflater.inflate(R.layout.toast_success_modify,null)
-        var toast = Toast.makeText(this,"This is the toast message", Toast.LENGTH_LONG)
-        toast.view = toastView
-        toast.show()
+    fun showToastMessage(status: String, message: String) {
+        if(status.equals("success")){
+            var toastView = layoutInflater.inflate(R.layout.toast_success,null)
+            var toast = Toast.makeText(this,"This is the toast message", Toast.LENGTH_LONG)
+            toast.view = toastView
+            toastView.toast_success_message.text = message
+            toast.show()
+        }
+        else if (status.equals("error")){
+            var toastView = layoutInflater.inflate(R.layout.toast_error,null)
+            var toast = Toast.makeText(this,"This is the toast message", Toast.LENGTH_LONG)
+            toast.view = toastView
+            toastView.toast_error_message.text = message
+            toast.show()
+        }
     }
 }

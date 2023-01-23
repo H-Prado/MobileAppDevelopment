@@ -11,7 +11,7 @@ import android.widget.Toast
 import androidx.room.Room
 import kotlinx.android.synthetic.main.dialog_register_login.*
 import kotlinx.android.synthetic.main.dialog_register_login.input_password
-import kotlinx.android.synthetic.main.toast_error_register_login.view.*
+import kotlinx.android.synthetic.main.toast_error.view.*
 
 class OwnerMenuActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -109,10 +109,10 @@ class OwnerMenuActivity : AppCompatActivity() {
     }
 
     fun showToastErrorMessage(message: String) {
-        var toastView = layoutInflater.inflate(R.layout.toast_error_register_login,null)
+        var toastView = layoutInflater.inflate(R.layout.toast_error,null)
         var toast = Toast.makeText(this,"This is the toast message", Toast.LENGTH_LONG)
         toast.view = toastView
-        toastView.toast_register_login_error_message.text = message
+        toastView.toast_error_message.text = message
         toast.show()
     }
 

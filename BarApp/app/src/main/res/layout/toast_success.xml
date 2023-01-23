@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="50sp"
         android:gravity="center"
-        android:text="Restaurant succesfully added!!"
+        android:text=""
         android:textColor="@android:color/black"
         android:textSize="15sp"
         android:textStyle="bold"/>
