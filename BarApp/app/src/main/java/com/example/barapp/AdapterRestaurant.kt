@@ -9,7 +9,7 @@ import android.widget.BaseAdapter
 import android.widget.TextView
 import kotlinx.android.synthetic.main.list_restaurants_view.view.*
 
-class RestaurantAdapter: BaseAdapter {
+class AdapterRestaurant: BaseAdapter {
     lateinit var context: Context
     lateinit var restaurants: List<Restaurant>
 

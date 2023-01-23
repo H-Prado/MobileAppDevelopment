@@ -7,7 +7,8 @@
         android:id="@+id/restaurant_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="15sp"
+        android:layout_marginTop="5sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
@@ -41,5 +42,6 @@
         android:layout_below="@id/restaurant_owner"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        />
+        android:layout_marginBottom="5sp"
+    />
 </RelativeLayout>

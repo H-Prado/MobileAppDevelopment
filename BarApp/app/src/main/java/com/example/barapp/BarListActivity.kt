@@ -1,14 +1,11 @@
 package com.example.barapp
 
-import android.app.Dialog
 import android.content.Context
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.room.Room
 import kotlinx.android.synthetic.main.activity_bar_list.*
-import kotlinx.android.synthetic.main.dialog_password_layout.*
 
 class BarListActivity : AppCompatActivity() {
 
@@ -30,7 +27,7 @@ class BarListActivity : AppCompatActivity() {
         val restaurantDao = db.restaurantDao()
         var listOfRestaurants: List<Restaurant> = restaurantDao.getAll()
 
-        var restaurantAdapter = RestaurantAdapter(this, listOfRestaurants)
-        list_restaurants.adapter = restaurantAdapter
+        var adapterRestaurant = AdapterRestaurant(this, listOfRestaurants)
+        list_restaurants.adapter = adapterRestaurant
     }
 }

@@ -17,10 +17,6 @@ class OwnerMenuActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_owner_menu)
-
-        val sp = getSharedPreferences("user_info", Context.MODE_PRIVATE)
-        val userRole = sp.getString("user_role", "")
-        Log.i("User information: ", "Role:" + userRole!!)
     }
 
     fun runLogIn(view: View) {
@@ -52,7 +48,10 @@ class OwnerMenuActivity : AppCompatActivity() {
                         showToastErrorMessage("User name not found!")
                     }else if(dbUser.password.equals(dialog.input_password.text.toString())){
                         Log.i("Succesfully logged in", "User name and password were right")
-                        var intent = Intent(this, BarListActivity::class.java)
+
+                        spWriteTo(dialog.input_username.text.toString())
+
+                        var intent = Intent(this, OwnerBarList::class.java)
                         startActivity(intent)
                     }else{
                         Log.e("Log In Error", "Incorrect Password")
@@ -96,7 +95,9 @@ class OwnerMenuActivity : AppCompatActivity() {
                     Log.i("Succesfully registered", "Register went through. New username: " + dialog.input_username.text.toString().lowercase() +
                           "New Password: " + dialog.input_password.text.toString())
 
-                    var intent = Intent(this, BarListActivity::class.java)
+                    spWriteTo(dialog.input_username.text.toString())
+
+                    var intent = Intent(this, OwnerBarList::class.java)
                     startActivity(intent)
                 } catch (e: Exception) {
                     Log.e("Log In Error", e.toString())
@@ -115,10 +116,10 @@ class OwnerMenuActivity : AppCompatActivity() {
         toast.show()
     }
 
-    fun spWriteTo(action: String){
+    fun spWriteTo(name: String){
         val sp = getSharedPreferences("user_info", Context.MODE_PRIVATE)
         val editor = sp.edit()
-        editor.putString("user_action", action)
+        editor.putString("user_name", name)
         editor.apply()
     }
 }

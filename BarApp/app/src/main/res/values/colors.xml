@@ -7,6 +7,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="theme_color">#297B9F</color>
     <color name="success_toast">#94D878</color>
     <color name="error_toast">#D3334A</color>
 </resources>

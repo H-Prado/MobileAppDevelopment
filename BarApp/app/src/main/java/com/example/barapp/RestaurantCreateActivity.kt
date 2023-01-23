@@ -1,5 +1,6 @@
 package com.example.barapp
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,10 +10,17 @@ import android.widget.Toast
 import androidx.room.Room
 import kotlinx.android.synthetic.main.activity_restaurant_info.*
 
-class RestaurantInfoActivity : AppCompatActivity() {
+class RestaurantCreateActivity : AppCompatActivity() {
+
+    private var userName: String = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_restaurant_info)
+        setContentView(R.layout.activity_restaurant_create)
+
+        //Read sp values
+        val sp = getSharedPreferences("user_info", Context.MODE_PRIVATE)
+        userName = sp.getString("user_name", "")!!
     }
 
     fun runConfirm(view: View){
@@ -27,24 +35,21 @@ class RestaurantInfoActivity : AppCompatActivity() {
             //Check if no empty values
             if(!restaurant_ubication.text.isNullOrBlank() &&
                !restaurant_name.text.isNullOrBlank() &&
-               !restaurant_phone.text.isNullOrBlank() &&
-               !restaurant_owner.text.isNullOrBlank() &&
-               !restaurant_password.text.isNullOrBlank()){
+               !restaurant_phone.text.isNullOrBlank()){
                 //Verify that phone has just 9 numbers
                 if (restaurant_phone.text.toString().length == 9) {
                     val modifyRestaurant = Restaurant(
                         ubication = restaurant_ubication.text.toString(),
                         name = restaurant_name.text.toString(),
                         phone = restaurant_phone.text.toString(),
-                        owner = restaurant_owner.text.toString(),
-                        password = restaurant_password.text.toString()
+                        owner = userName
                     )
                     restaurantDao.insertAll(modifyRestaurant)
                     Log.i("Modified Succesfully", "Data: " + modifyRestaurant.toString())
 
                     showToastMessage()
 
-                    var intent = Intent(this, MenuActivity::class.java)
+                var intent = Intent(this, OwnerBarList::class.java)
                     startActivity(intent)
                 }else{
                     Log.e("Error modifing:", "Phone number doesn't have 9 numbers!")

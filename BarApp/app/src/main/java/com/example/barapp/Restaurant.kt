@@ -11,6 +11,5 @@ data class Restaurant(
     @ColumnInfo(name = "name") val name: String?,
     @ColumnInfo(name = "phone") val phone: String?,
     @ColumnInfo(name = "owner") val owner: String?,
-    @ColumnInfo(name = "password") val password: String?
     )
 
