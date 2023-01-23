@@ -1,0 +1,116 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/result_image"
+        android:layout_width="100sp"
+        android:layout_height="100sp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20sp"
+        android:src="@drawable/logo"
+        android:scaleType="fitCenter"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20sp"
+        android:gravity="center"
+        android:text="Name"/>
+    <EditText
+        android:id="@+id/restaurant_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5sp"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:text=""
+        android:hint="Write the name of the restaurant"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10sp"
+        android:gravity="center"
+        android:text="Phone Number"/>
+    <EditText
+        android:id="@+id/restaurant_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5sp"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:text=""
+        android:hint="Write the number phone of the restaurant"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10sp"
+        android:gravity="center"
+        android:text="Ubication"/>
+    <EditText
+        android:id="@+id/restaurant_ubication"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5sp"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:text=""
+        android:hint="Write the name of the Owner of the restaurant"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10sp"
+        android:gravity="center"
+        android:text="Owner's Name"/>
+    <EditText
+        android:id="@+id/restaurant_owner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5sp"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:text=""
+        android:hint="Write the name of the Owner of the restaurant"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10sp"
+        android:gravity="center"
+        android:text="Restaurant's Password"/>
+    <EditText
+        android:id="@+id/restaurant_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5sp"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:text=""
+        android:hint="Write your password to modify your restaurant later"/>
+
+    <TextView
+        android:id="@+id/restaurant_info_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10sp"
+        android:gravity="center"
+        android:textSize="20sp"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_gravity="bottom"
+        android:text="Confirm"
+        android:onClick="runConfirm"/>
+
+</LinearLayout>
