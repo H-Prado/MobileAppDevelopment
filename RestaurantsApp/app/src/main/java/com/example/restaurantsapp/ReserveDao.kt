@@ -16,6 +16,9 @@ interface ReserveDao {
     @Query("SELECT * FROM reserve Where phone IN (:phone)")
     fun getReservesByPhone(phone: String): List<Reserve>
 
+    @Query("UPDATE reserve SET hour = :newHour WHERE reserveId = :reserveId")
+    fun updateHour(reserveId: Int, newHour: String)
+
     @Query("DELETE FROM reserve WHERE reserveId = :reserveId")
     fun deleteByReserveId(reserveId: Int)
 

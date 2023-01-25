@@ -7,7 +7,7 @@ import androidx.room.Query
 
 @Dao
 interface RestaurantDao {
-    @Query("SELECT * FROM restaurant")
+    @Query("SELECT * FROM restaurant ORDER BY name")
     fun getAll(): List<Restaurant>
 
     @Query("SELECT * FROM restaurant WHERE ubication IN (:ubications)")

@@ -12,6 +12,7 @@ import androidx.room.Room
 import kotlinx.android.synthetic.main.dialog_reserve_hour.*
 import kotlinx.android.synthetic.main.dialog_reserve_hour.reserve_assistants
 import kotlinx.android.synthetic.main.dialog_reserve_hour.reserve_hour
+import kotlinx.android.synthetic.main.dialog_reserve_modify.*
 import kotlinx.android.synthetic.main.list_reserves_view.*
 import kotlinx.android.synthetic.main.toast_error.view.*
 import kotlinx.android.synthetic.main.toast_success.view.*
@@ -68,7 +69,6 @@ class ReserveCreateActivity : AppCompatActivity() {
                         today = true
                     }
 
-                    val hour = dialog.reserve_hour.hour.toString() + ":" + dialog.reserve_hour.minute
                     if(dialog.reserve_hour.hour > 22 || dialog.reserve_hour.hour < 9 || (dialog.reserve_hour.hour == 22 && dialog.reserve_hour.minute != 0)) {
                         Log.e("Hour Error", hour + " is not a valid hour")
                         showToastMessage("error", hour + " is not a valid hour")
@@ -77,13 +77,18 @@ class ReserveCreateActivity : AppCompatActivity() {
                         showToastMessage("error", "Phone number doesn't have 9 numbers!")
                     }else if(today && dialog.reserve_hour.hour < Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
                             || today && dialog.reserve_hour.hour == Calendar.getInstance().get(Calendar.HOUR_OF_DAY) && dialog.reserve_hour.minute < Calendar.getInstance().get(Calendar.MINUTE) + 30
-                            || today && dialog.reserve_hour.hour + 1 == Calendar.getInstance().get(Calendar.HOUR_OF_DAY) && dialog.reserve_hour.minute < Calendar.getInstance().get(Calendar.MINUTE) - 30)
+                            || today && dialog.reserve_hour.hour == Calendar.getInstance().get(Calendar.HOUR_OF_DAY) + 1 && dialog.reserve_hour.minute < Calendar.getInstance().get(Calendar.MINUTE) - 30)
                     {
                         Log.e("Reserve Error", "Reserve must be done at least 30 minutes earlier!")
                         showToastMessage("error", "Reserve must be done at least 30 minutes earlier!")
                     }
                      else{
-                         Log.i("fecha y hora", Calendar.getInstance().get(Calendar.HOUR_OF_DAY).toString() + " -- " + (Calendar.getInstance().get(Calendar.MINUTE) + 29))
+                        var hour =""
+                        if (dialog.reserve_hour.hour.toString().length == 1){
+                            hour = dialog.reserve_hour.hour.toString() + ":0" + dialog.reserve_hour.minute
+                        }else {
+                            hour = dialog.reserve_hour.hour.toString() + ":" + dialog.reserve_hour.minute
+                        }
 
                         Log.i("Reservation Confirmed", "Reservation at " + hour + " confirmed!")
                         showToastMessage("success", "Reservation at " + hour + " confirmed!")

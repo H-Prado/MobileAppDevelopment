@@ -12,6 +12,7 @@ import kotlinx.android.synthetic.main.dialog_reserve_hour.*
 import kotlinx.android.synthetic.main.dialog_reserve_modify.*
 import kotlinx.android.synthetic.main.toast_error.view.*
 import kotlinx.android.synthetic.main.toast_success.view.*
+import java.text.SimpleDateFormat
 import java.util.*
 
 class ReserveListActivity : AppCompatActivity() {
@@ -47,16 +48,31 @@ class ReserveListActivity : AppCompatActivity() {
         editDialog.setContentView(R.layout.dialog_reserve_modify)
         editDialog.reserve_edit_text.setText("When will your new hor of arrival?\n (Only from now to 22:00)")
         editDialog.btn_reserve_edit_confirm.setOnClickListener{
-            if(reserve_edit_hour.hour < Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
-                || reserve_edit_hour.hour == Calendar.getInstance().get(Calendar.HOUR_OF_DAY) && reserve_edit_hour.minute < Calendar.getInstance().get(
+            if(editDialog.reserve_edit_hour.hour < Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
+                || editDialog.reserve_edit_hour.hour == Calendar.getInstance().get(Calendar.HOUR_OF_DAY) && editDialog.reserve_edit_hour.minute < Calendar.getInstance().get(
                     Calendar.MINUTE) + 30
-                || reserve_edit_hour.hour + 1 == Calendar.getInstance().get(Calendar.HOUR_OF_DAY) && reserve_edit_hour.minute < Calendar.getInstance().get(Calendar.MINUTE) - 30)
+                || editDialog.reserve_edit_hour.hour == Calendar.getInstance().get(Calendar.HOUR_OF_DAY) + 1 && editDialog.reserve_edit_hour.minute < Calendar.getInstance().get(Calendar.MINUTE) - 30)
             {
                 Log.e("Reserve Error", "Reserve must be at least 30 minutes from now or later!")
                 showToastMessage("error", "Reserve must be at least 30 minutes from now or later!")
+            }else {
+                var newHour = ""
+                if (editDialog.reserve_edit_hour.minute.toString().length == 1){
+                    newHour = editDialog.reserve_edit_hour.hour.toString() + ":0" + editDialog.reserve_edit_hour.minute
+                }else {
+                    newHour = editDialog.reserve_edit_hour.hour.toString() + ":" + editDialog.reserve_edit_hour.minute
+                }
+
+                val db =
+                    Room.databaseBuilder(applicationContext, ReserveDatabase::class.java, "reserveDatabase")
+                        .allowMainThreadQueries().enableMultiInstanceInvalidation()
+                        .fallbackToDestructiveMigration().build()
+                val reserveDao = db.reserveDao()
+                reserveDao.updateHour(reserve.reserveId, newHour)
+
+                loadReserveList(reserve.phone)
+                editDialog.dismiss()
             }
-            loadReserveList(reserve.phone)
-            editDialog.dismiss()
         }
         editDialog.btn_reserve_edit_cancel.setOnClickListener{
             editDialog.dismiss()
@@ -81,7 +97,11 @@ class ReserveListActivity : AppCompatActivity() {
                 .allowMainThreadQueries().enableMultiInstanceInvalidation()
                 .fallbackToDestructiveMigration().build()
         val reserveDao = db.reserveDao()
-        var listOfReserves: List<Reserve> = reserveDao.getReservesByPhone(passedPhone)
+        var listOfNotOrderedReserves: List<Reserve> = reserveDao.getReservesByPhone(passedPhone)
+
+        val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+        val timeFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
+        val listOfReserves = listOfNotOrderedReserves.sortedWith(compareBy({ dateFormat.parse(it.date).time }, { timeFormat.parse(it.hour).time }))
 
         var adapterReserve = AdapterReserve(this, listOfReserves)
         list_reserves.adapter = adapterReserve
