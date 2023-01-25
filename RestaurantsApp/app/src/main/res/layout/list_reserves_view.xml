@@ -3,16 +3,62 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <TextView
-        android:id="@+id/reserve_hour"
+        android:id="@+id/reserve_restaurant_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5sp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:gravity="center"
-        android:textSize="20sp"
+        android:textSize="30sp"
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/reserve_hour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5sp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:textSize="30sp"
         android:textStyle="bold"
-        android:textColor="@color/black"
-        />
+        android:paddingRight="5sp"/>
+    <TextView
+        android:id="@+id/reserve_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5sp"
+        android:layout_below="@id/reserve_hour"
+        android:layout_alignParentRight="true"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:paddingRight="5sp"/>
+    <TextView
+        android:id="@+id/reserve_assistants"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/reserve_restaurant_name"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:textSize="15sp"
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/reserve_restaurant_ubication"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/reserve_assistants"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:textSize="15sp"
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/reserve_restaurant_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/reserve_restaurant_ubication"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="5sp"
+        android:textSize="15sp"
+        android:textStyle="bold"/>
 </RelativeLayout>

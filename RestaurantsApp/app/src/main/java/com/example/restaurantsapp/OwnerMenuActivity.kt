@@ -51,7 +51,8 @@ class OwnerMenuActivity : AppCompatActivity() {
 
                         spWriteTo(dialog.input_username.text.toString())
 
-                        var intent = Intent(this, OwnerBarList::class.java)
+                        dialog.dismiss()
+                        var intent = Intent(this, OwnerBarListActivity::class.java)
                         startActivity(intent)
                     }else{
                         Log.e("Log In Error", "Incorrect Password")
@@ -97,7 +98,8 @@ class OwnerMenuActivity : AppCompatActivity() {
 
                     spWriteTo(dialog.input_username.text.toString())
 
-                    var intent = Intent(this, OwnerBarList::class.java)
+                    dialog.dismiss()
+                    var intent = Intent(this, OwnerBarListActivity::class.java)
                     startActivity(intent)
                 } catch (e: Exception) {
                     Log.e("Log In Error", e.toString())

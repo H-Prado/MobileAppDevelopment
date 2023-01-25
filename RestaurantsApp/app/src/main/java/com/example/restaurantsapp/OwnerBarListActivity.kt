@@ -10,13 +10,12 @@ import android.view.View
 import android.widget.Toast
 import androidx.room.Room
 import kotlinx.android.synthetic.main.activity_bar_list.*
-import kotlinx.android.synthetic.main.activity_restaurant_create.*
 import kotlinx.android.synthetic.main.dialog_restaurant_modify.*
-import kotlinx.android.synthetic.main.dialog_restaurant_owner.*
+import kotlinx.android.synthetic.main.dialog_interact.*
 import kotlinx.android.synthetic.main.toast_error.view.*
 import kotlinx.android.synthetic.main.toast_success.view.*
 
-class OwnerBarList : AppCompatActivity() {
+class OwnerBarListActivity : AppCompatActivity() {
 
     private var userName: String =""
 
@@ -39,12 +38,13 @@ class OwnerBarList : AppCompatActivity() {
     fun showRestaurantDialog(restaurant: Restaurant, position: Int, adapterRestaurant: AdapterRestaurant){
         val dialog = Dialog(this)
         dialog.setTitle("Restaurant Dialog")
-        dialog.setContentView(R.layout.dialog_restaurant_owner)
-        dialog.btn_restaurant_edit.setOnClickListener{
+        dialog.interact_text.text = "What do you want to do with this restaurant?"
+        dialog.setContentView(R.layout.dialog_interact)
+        dialog.btn_edit.setOnClickListener{
             runEditRestaurant(restaurant)
             dialog.dismiss()
         }
-        dialog.btn_restaurant_delete.setOnClickListener{
+        dialog.btn_delete.setOnClickListener{
             runRemoveRestaurant(restaurant.ubication)
             loadRestaurantsList()
             dialog.dismiss()
@@ -109,7 +109,7 @@ class OwnerBarList : AppCompatActivity() {
         val restaurantDao = db.restaurantDao()
 
         try{
-            newRestaurant.phone?.toBigInteger()
+            newRestaurant.phone?.toInt()
             //Check if no empty values
             if(!newRestaurant.ubication.isNullOrBlank() &&
                 !newRestaurant.name.isNullOrBlank() &&

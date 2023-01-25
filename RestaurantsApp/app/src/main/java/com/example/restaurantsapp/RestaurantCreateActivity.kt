@@ -32,7 +32,7 @@ class RestaurantCreateActivity : AppCompatActivity() {
 
         try{
             //Check if phone is a Int number
-            restaurant_phone.text.toString().toBigInteger()
+            restaurant_phone.text.toString().toInt()
 
             //Check if no empty values
             if(!restaurant_ubication.text.isNullOrBlank() &&
@@ -51,7 +51,7 @@ class RestaurantCreateActivity : AppCompatActivity() {
 
                     showToastMessage("success", "Restaurant was succesfully created!")
 
-                    var intent = Intent(this, OwnerBarList::class.java)
+                    var intent = Intent(this, OwnerBarListActivity::class.java)
                     startActivity(intent)
                 }else{
                     Log.e("Error modifing:", "Phone number doesn't have 9 numbers!")
