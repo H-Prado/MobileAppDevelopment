@@ -7,7 +7,7 @@ import androidx.room.Query
 
 @Dao
 interface ReserveDao {
-    @Query("SELECT * FROM reserve")
+    @Query("SELECT * FROM reserve ORDER BY phone")
     fun getAll(): List<Reserve>
 
     @Query("SELECT * FROM reserve WHERE phone IN (:phones)")

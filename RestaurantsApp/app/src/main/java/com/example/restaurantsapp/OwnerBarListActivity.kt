@@ -38,8 +38,8 @@ class OwnerBarListActivity : AppCompatActivity() {
     fun showRestaurantDialog(restaurant: Restaurant, position: Int, adapterRestaurant: AdapterRestaurant){
         val dialog = Dialog(this)
         dialog.setTitle("Restaurant Dialog")
-        dialog.interact_text.text = "What do you want to do with this restaurant?"
         dialog.setContentView(R.layout.dialog_interact)
+        dialog.interact_text.text = "What do you want to do with this restaurant?"
         dialog.btn_edit.setOnClickListener{
             runEditRestaurant(restaurant)
             dialog.dismiss()

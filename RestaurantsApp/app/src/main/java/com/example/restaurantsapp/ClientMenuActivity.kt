@@ -19,7 +19,7 @@ class ClientMenuActivity : AppCompatActivity() {
     }
 
     fun runReservation(view: View) {
-        var intent = Intent(this, BarListActivity::class.java)
+        var intent = Intent(this, RestaurantListActivity::class.java)
         startActivity(intent)
     }
     fun runModify(view: View) {

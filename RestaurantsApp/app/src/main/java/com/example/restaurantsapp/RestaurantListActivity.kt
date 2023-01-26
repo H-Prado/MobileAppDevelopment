@@ -6,7 +6,7 @@ import android.os.Bundle
 import androidx.room.Room
 import kotlinx.android.synthetic.main.activity_bar_list.*
 
-class BarListActivity : AppCompatActivity() {
+class RestaurantListActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -21,7 +21,7 @@
         android:layout_gravity="center"
         android:textStyle="bold"
         android:textSize="15sp"
-        android:text="Restaurants List"
+        android:text="Reserves List"
         android:onClick="runReservesAdminMenu"/>
 
     <Button
@@ -30,8 +30,8 @@
         android:layout_gravity="center"
         android:textStyle="bold"
         android:textSize="15sp"
-        android:text="Reserves List"
-        android:onClick="runReservesAdminMenu"/>
+        android:text="Restaurant List"
+        android:onClick="runRestaurantsAdminMenu"/>
     <Button
         android:layout_width="300sp"
         android:layout_height="wrap_content"

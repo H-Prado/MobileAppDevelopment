@@ -1,5 +1,6 @@
 package com.example.restaurantsapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -13,11 +14,15 @@ class AdminMenuActivity : AppCompatActivity() {
     }
 
     fun runReservesAdminMenu(view: View){
-
+        var intent = Intent(this, AdminListActivity::class.java)
+        intent.putExtra("typeListPassed", "reserve")
+        startActivity(intent)
     }
 
-    fun runRerestaurantsAdminMenu(view: View){
-
+    fun runRestaurantsAdminMenu(view: View){
+        var intent = Intent(this, AdminListActivity::class.java)
+        intent.putExtra("typeListPassed", "restaurant")
+        startActivity(intent)
     }
 
     fun runInitialization(view: View){
@@ -72,7 +77,7 @@ class AdminMenuActivity : AppCompatActivity() {
         restaurantDao.insertAll(Restaurant(ubication = "warsaw", name = "Warsaw Leszlek", phone = "555444332", owner = "leszlek"))
         restaurantDao.insertAll(Restaurant(ubication = "wroclaw", name = "Wroclaw Leszlek", phone = "555444333", owner = "leszlek"))
         restaurantDao.insertAll(Restaurant(ubication = "krakow", name = "Krakow Leszlek", phone = "555444334", owner = "leszlek"))
-        restaurantDao.insertAll(Restaurant(ubication = "gdanks", name = "Gdansk", phone = "555444335", owner = "leszlek"))
+        restaurantDao.insertAll(Restaurant(ubication = "gdansk", name = "Gdansk", phone = "555444335", owner = "leszlek"))
 
         Log.i("Restaurants Database", "Restaurants Database deleded and initialized")
     }
