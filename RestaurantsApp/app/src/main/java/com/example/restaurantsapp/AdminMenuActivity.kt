@@ -91,11 +91,16 @@ class AdminMenuActivity : AppCompatActivity() {
 
         reserveDao.deleteAll()
 
-        reserveDao.insertAll(Reserve(date="30/02/2023", hour="14:00", phone="123456789", ubication="Krakow", assistants="3"))
-        reserveDao.insertAll(Reserve(date="14/03/2023", hour="12:30", phone="123456789", ubication="Poznan", assistants="2"))
-        reserveDao.insertAll(Reserve(date="01/04/2023", hour="15:00", phone="123456789", ubication="Vigo", assistants="13"))
-        reserveDao.insertAll(Reserve(date="22/05/2023", hour="21:00", phone="123456789", ubication="Oslo Eats", assistants="8"))
-        reserveDao.insertAll(Reserve(date="25/10/2023", hour="20:30", phone="123456789", ubication="MatoP", assistants="5"))
+        reserveDao.insertAll(Reserve(date="30/02/2023", hour="14:00", phone="123456789", ubication="krakow", assistants="3"))
+        reserveDao.insertAll(Reserve(date="14/03/2023", hour="12:30", phone="123456789", ubication="poznan", assistants="2"))
+        reserveDao.insertAll(Reserve(date="01/04/2023", hour="15:00", phone="123456789", ubication="vigo", assistants="13"))
+        reserveDao.insertAll(Reserve(date="22/05/2023", hour="21:00", phone="123456789", ubication="oslo", assistants="8"))
+        reserveDao.insertAll(Reserve(date="25/10/2023", hour="20:30", phone="123456789", ubication="vilar de mato", assistants="5"))
+        reserveDao.insertAll(Reserve(date="16/02/2023", hour="14:09", phone="123454321", ubication="krakow", assistants="5"))
+        reserveDao.insertAll(Reserve(date="14/03/2023", hour="12:31", phone="123454321", ubication="poznan", assistants="1"))
+        reserveDao.insertAll(Reserve(date="08/04/2023", hour="15:34", phone="123454321", ubication="vigo", assistants="20"))
+        reserveDao.insertAll(Reserve(date="05/05/2023", hour="21:20", phone="123454321", ubication="oslo", assistants="4"))
+        reserveDao.insertAll(Reserve(date="28/10/2023", hour="20:15", phone="123454321", ubication="vilar de mato", assistants="5"))
         Log.i("Reserves Database", "Reserves Database deleded and initialized")
     }
 }

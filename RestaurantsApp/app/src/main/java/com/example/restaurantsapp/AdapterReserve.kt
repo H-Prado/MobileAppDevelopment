@@ -2,6 +2,7 @@ package com.example.restaurantsapp
 
 import android.content.Context
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -50,12 +51,16 @@ class AdapterReserve: BaseAdapter {
         val restaurantDao = db.restaurantDao()
         val restaurant: Restaurant = restaurantDao.getRestaurantByUbication(getItem(position).ubication)
 
-        reserveHourTextView.text = getItem(position).hour
-        reserveRestaurantUbicationTextView.text = getItem(position).ubication
-        reserveDateTextView.text = getItem(position).date
-        reserveAssistantsTextView.text = "Number of people: " + getItem(position).assistants
-        reserveRestaurantNameTextView.text = restaurant.name
-        reserveRestaurantPhoneTextView.text = restaurant.phone
+        try{
+            reserveHourTextView.text = getItem(position).hour
+            reserveRestaurantUbicationTextView.text = getItem(position).ubication
+            reserveDateTextView.text = getItem(position).date
+            reserveAssistantsTextView.text = "Number of people: " + getItem(position).assistants
+            reserveRestaurantNameTextView.text = restaurant.name
+            reserveRestaurantPhoneTextView.text = restaurant.phone
+        }catch(e: Exception) {
+            Log.e("Adapter Error", e.toString())
+        }
         return itemView
     }
 }

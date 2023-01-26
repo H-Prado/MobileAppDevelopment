@@ -68,7 +68,7 @@ class ReserveCreateActivity : AppCompatActivity() {
                         today = true
                     }
                     var hour =""
-                    if (dialog.reserve_hour.hour.toString().length == 1){
+                    if (dialog.reserve_hour.minute.toString().length == 1){
                         hour = dialog.reserve_hour.hour.toString() + ":0" + dialog.reserve_hour.minute
                     }else {
                         hour = dialog.reserve_hour.hour.toString() + ":" + dialog.reserve_hour.minute

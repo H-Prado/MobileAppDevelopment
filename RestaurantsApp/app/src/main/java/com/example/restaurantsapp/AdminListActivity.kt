@@ -23,6 +23,7 @@ class AdminListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admin_list)
+        filter = "none"
 
         typeListPassed = intent.getStringExtra("typeListPassed")!!
 
@@ -63,6 +64,7 @@ class AdminListActivity : AppCompatActivity() {
                 dialog.btn_filter_confirm.setOnClickListener {
                     filter = dialog.filter_input.text.toString()
                     loadReserveList(filter)
+                    btn_admin_filter.text = "Cancel filter"
                     dialog.dismiss()
                 }
                 dialog.btn_filter_cancel.setOnClickListener {
@@ -251,14 +253,29 @@ class AdminListActivity : AppCompatActivity() {
         editDialog.reserve_edit_hour.setIs24HourView(true)
         editDialog.reserve_edit_text.setText("When will your new hor of arrival?\n (Only from now to 22:00)")
         editDialog.btn_reserve_edit_confirm.setOnClickListener{
-            if(editDialog.reserve_edit_hour.hour < Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
+            if(//If the reserve to change is on this day
+                (reserve.date.substring(0,2).toInt() == Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
+                && reserve.date.substring(3,5).toInt() == Calendar.getInstance().get(Calendar.MONTH)
+                && reserve.date.substring(6,10).toInt() == Calendar.getInstance().get(Calendar.YEAR))
+                //The new hour can not be 30 mins from now or earlier
+                && (editDialog.reserve_edit_hour.hour < Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
                 || editDialog.reserve_edit_hour.hour == Calendar.getInstance().get(Calendar.HOUR_OF_DAY) && editDialog.reserve_edit_hour.minute < Calendar.getInstance().get(
                     Calendar.MINUTE) + 30
-                || editDialog.reserve_edit_hour.hour == Calendar.getInstance().get(Calendar.HOUR_OF_DAY) + 1 && editDialog.reserve_edit_hour.minute < Calendar.getInstance().get(Calendar.MINUTE) - 30)
+                || editDialog.reserve_edit_hour.hour == Calendar.getInstance().get(Calendar.HOUR_OF_DAY) + 1 && editDialog.reserve_edit_hour.minute < Calendar.getInstance().get(Calendar.MINUTE) - 30))
             {
                 Log.e("Reserve Error", "Reserve must be at least 30 minutes from now or later!")
                 showToastMessage("error", "Reserve must be at least 30 minutes from now or later!")
-            }else {
+            }else if(editDialog.reserve_edit_hour.hour < 12 || editDialog.reserve_edit_hour.hour > 22
+                    || (editDialog.reserve_edit_hour.hour == 22 && editDialog.reserve_edit_hour.minute != 0)){
+                var hour =""
+                if (editDialog.reserve_edit_hour.minute.toString().length == 1){
+                    hour = editDialog.reserve_edit_hour.hour.toString() + ":0" + editDialog.reserve_edit_hour.minute
+                }else {
+                    hour = editDialog.reserve_edit_hour.hour.toString() + ":" + editDialog.reserve_edit_hour.minute
+                }
+                Log.e("Hour Error", hour + " is not a valid hour")
+                showToastMessage("error", hour + " is not a valid hour")
+            }else{
                 var newHour = ""
                 if (editDialog.reserve_edit_hour.minute.toString().length == 1){
                     newHour = editDialog.reserve_edit_hour.hour.toString() + ":0" + editDialog.reserve_edit_hour.minute
@@ -274,6 +291,8 @@ class AdminListActivity : AppCompatActivity() {
                 reserveDao.updateHour(reserve.reserveId, newHour)
 
                 loadReserveList(filter)
+
+                showToastMessage("success", "Reserve was succesfully modified!")
                 editDialog.dismiss()
             }
         }
