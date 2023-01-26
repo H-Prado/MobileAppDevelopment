@@ -13,6 +13,13 @@
         android:theme="@style/Theme.RestaurantsApp"
         tools:targetApi="31">
         <activity
+            android:name=".AdminMenuActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".ReserveListActivity"
             android:exported="false">
             <meta-data

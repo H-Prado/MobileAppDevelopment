@@ -8,7 +8,6 @@ import android.widget.Toast
 import androidx.room.Room
 import kotlinx.android.synthetic.main.activity_reserve_list.*
 import kotlinx.android.synthetic.main.dialog_interact.*
-import kotlinx.android.synthetic.main.dialog_reserve_hour.*
 import kotlinx.android.synthetic.main.dialog_reserve_modify.*
 import kotlinx.android.synthetic.main.toast_error.view.*
 import kotlinx.android.synthetic.main.toast_success.view.*
@@ -46,6 +45,7 @@ class ReserveListActivity : AppCompatActivity() {
     fun runEditReserve(reserve: Reserve){
         val editDialog = Dialog(this)
         editDialog.setContentView(R.layout.dialog_reserve_modify)
+        editDialog.reserve_edit_hour.setIs24HourView(true)
         editDialog.reserve_edit_text.setText("When will your new hor of arrival?\n (Only from now to 22:00)")
         editDialog.btn_reserve_edit_confirm.setOnClickListener{
             if(editDialog.reserve_edit_hour.hour < Calendar.getInstance().get(Calendar.HOUR_OF_DAY)

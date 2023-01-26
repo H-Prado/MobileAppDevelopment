@@ -16,6 +16,9 @@ interface UserDao {
     @Query("SELECT * from user WHERE username = :username")
     fun getUserByUsername(username: String): User
 
+    @Query("DELETE from user")
+    fun deleteAll()
+
     @Insert
     fun insertAll(vararg users: User)
 

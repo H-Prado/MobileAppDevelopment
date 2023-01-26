@@ -61,7 +61,7 @@ class OwnerBarListActivity : AppCompatActivity() {
         editDialog.restaurant_edit_name.setText(restaurant.name)
         editDialog.restaurant_edit_phone.setText(restaurant.phone)
         editDialog.btn_restaurant_edit_confirm.setOnClickListener{
-            if(paramsChecker(Restaurant(ubication = editDialog.restaurant_edit_ubication.text.toString(),
+            if(paramsChecker(Restaurant(ubication = editDialog.restaurant_edit_ubication.text.toString().lowercase(),
                     name = editDialog.restaurant_edit_name.text.toString(),
                     phone = editDialog.restaurant_edit_phone.text.toString(),
                     owner = userName), oldRestaurant)){

@@ -22,6 +22,9 @@ interface ReserveDao {
     @Query("DELETE FROM reserve WHERE reserveId = :reserveId")
     fun deleteByReserveId(reserveId: Int)
 
+    @Query("DELETE from reserve")
+    fun deleteAll()
+
     @Insert
     fun insertAll(vararg users: Reserve)
 

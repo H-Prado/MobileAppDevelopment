@@ -41,7 +41,7 @@ class RestaurantCreateActivity : AppCompatActivity() {
                 //Verify that phone has just 9 numbers
                 if (restaurant_phone.text.toString().length == 9) {
                     val modifyRestaurant = Restaurant(
-                        ubication = restaurant_ubication.text.toString(),
+                        ubication = restaurant_ubication.text.toString().lowercase(),
                         name = restaurant_name.text.toString(),
                         phone = restaurant_phone.text.toString(),
                         owner = userName

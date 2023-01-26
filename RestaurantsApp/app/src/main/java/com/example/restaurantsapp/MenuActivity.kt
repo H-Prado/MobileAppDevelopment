@@ -21,7 +21,7 @@ class MenuActivity : AppCompatActivity() {
         startActivity(intent)
     }
     fun runAdmin(view: View) {
-        var intent = Intent(this, BarListActivity::class.java)
+        var intent = Intent(this, AdminMenuActivity::class.java)
         startActivity(intent)
     }
 }

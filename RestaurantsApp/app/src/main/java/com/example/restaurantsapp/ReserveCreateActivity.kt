@@ -12,8 +12,6 @@ import androidx.room.Room
 import kotlinx.android.synthetic.main.dialog_reserve_hour.*
 import kotlinx.android.synthetic.main.dialog_reserve_hour.reserve_assistants
 import kotlinx.android.synthetic.main.dialog_reserve_hour.reserve_hour
-import kotlinx.android.synthetic.main.dialog_reserve_modify.*
-import kotlinx.android.synthetic.main.list_reserves_view.*
 import kotlinx.android.synthetic.main.toast_error.view.*
 import kotlinx.android.synthetic.main.toast_success.view.*
 import java.util.*
@@ -54,6 +52,7 @@ class ReserveCreateActivity : AppCompatActivity() {
             val dialog = Dialog(this)
             dialog.setTitle("Reserve Dialog")
             dialog.setContentView(R.layout.dialog_reserve_hour)
+            dialog.reserve_hour.setIs24HourView(true)
             dialog.btn_reserve_hour_confirm.setOnClickListener{
                 try{
                     correctNumber = false
@@ -68,8 +67,13 @@ class ReserveCreateActivity : AppCompatActivity() {
                     if(datePicker.year == Calendar.getInstance().get(Calendar.YEAR) && datePicker.month == Calendar.getInstance().get(Calendar.MONTH) && datePicker.dayOfMonth == Calendar.getInstance().get(Calendar.DAY_OF_MONTH)){
                         today = true
                     }
-
-                    if(dialog.reserve_hour.hour > 22 || dialog.reserve_hour.hour < 9 || (dialog.reserve_hour.hour == 22 && dialog.reserve_hour.minute != 0)) {
+                    var hour =""
+                    if (dialog.reserve_hour.hour.toString().length == 1){
+                        hour = dialog.reserve_hour.hour.toString() + ":0" + dialog.reserve_hour.minute
+                    }else {
+                        hour = dialog.reserve_hour.hour.toString() + ":" + dialog.reserve_hour.minute
+                    }
+                    if(dialog.reserve_hour.hour > 22 || dialog.reserve_hour.hour < 12 || (dialog.reserve_hour.hour == 22 && dialog.reserve_hour.minute != 0)) {
                         Log.e("Hour Error", hour + " is not a valid hour")
                         showToastMessage("error", hour + " is not a valid hour")
                     }else if(dialog.reserve_phone.text.toString().length != 9){
@@ -83,13 +87,6 @@ class ReserveCreateActivity : AppCompatActivity() {
                         showToastMessage("error", "Reserve must be done at least 30 minutes earlier!")
                     }
                      else{
-                        var hour =""
-                        if (dialog.reserve_hour.hour.toString().length == 1){
-                            hour = dialog.reserve_hour.hour.toString() + ":0" + dialog.reserve_hour.minute
-                        }else {
-                            hour = dialog.reserve_hour.hour.toString() + ":" + dialog.reserve_hour.minute
-                        }
-
                         Log.i("Reservation Confirmed", "Reservation at " + hour + " confirmed!")
                         showToastMessage("success", "Reservation at " + hour + " confirmed!")
 

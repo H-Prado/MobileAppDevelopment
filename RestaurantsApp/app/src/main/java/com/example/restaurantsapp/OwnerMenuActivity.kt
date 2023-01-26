@@ -103,7 +103,7 @@ class OwnerMenuActivity : AppCompatActivity() {
                     startActivity(intent)
                 } catch (e: Exception) {
                     Log.e("Log In Error", e.toString())
-                    showToastErrorMessage("User already exists! Try another one")
+                    showToastErrorMessage("User already exists! Try another one (uppercase converted to lowercase)")
                 }
             }
         }

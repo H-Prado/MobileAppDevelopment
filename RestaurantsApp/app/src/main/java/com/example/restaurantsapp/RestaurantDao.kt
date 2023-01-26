@@ -22,6 +22,9 @@ interface RestaurantDao {
     @Query("DELETE FROM restaurant WHERE ubication = :ubication")
     fun deleteByUbication(ubication: String)
 
+    @Query("DELETE from restaurant")
+    fun deleteAll()
+
     @Insert
     fun insertAll(vararg users: Restaurant)
 
